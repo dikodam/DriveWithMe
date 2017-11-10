@@ -5,4 +5,12 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
+
+    <string name="get_in">Einsteigen</string>
+    <string name="get_out">Aussteigen</string>
+    <string name="drive">Fahren</string>
+    <string name="refuel">Tanken</string>
+    <string name="passengers">Mitfahrer</string>
+    <string name="share">Teilen</string>
+    <string name="send">Senden</string>
 </resources>
