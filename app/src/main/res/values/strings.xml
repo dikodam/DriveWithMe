@@ -13,4 +13,5 @@
     <string name="passengers">Mitfahrer</string>
     <string name="share">Teilen</string>
     <string name="send">Senden</string>
+    <string name="title_activity_refuel">RefuelActivity</string>
 </resources>

@@ -2,7 +2,6 @@ package de.dikodam.drivewithme;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -14,44 +13,6 @@ import android.view.MenuItem;
 
 public class DriveActivity extends AppCompatActivity {
 
-    private NavigationView.OnNavigationItemSelectedListener navigationItemSelectedListener = (MenuItem item) -> {
-        int id = item.getItemId();
-
-        String logTag = "APP:NAVI_BAR";
-        String formatString = "nav item %s was chosen";
-
-        switch (id) {
-            case R.id.nav_drive:
-                //TODO: everything OK
-                Log.i(logTag, String.format(formatString, "DRIVE"));
-                break;
-            case R.id.nav_refuel:
-                //TODO change/leave activity (content?) to refueling
-                startActivity(new Intent(this, RefuelActivity.class));
-                Log.i(logTag, String.format(formatString, "REFUEL"));
-                break;
-            case R.id.nav_passengers:
-                //TODO change/leave activity (content?) to passengers management
-                Log.i(logTag, String.format(formatString, "PASSENGERS"));
-                break;
-
-            case R.id.nav_share:
-                //TODO
-                Log.i(logTag, String.format(formatString, "SHARE"));
-                break;
-            case R.id.nav_send:
-                //TODO
-                Log.i(logTag, String.format(formatString, "SEND"));
-                break;
-            default:
-                break;
-        }
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
-        return true;
-    };
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,19 +20,16 @@ public class DriveActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.drive_toolbar);
         setSupportActionBar(toolbar);
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout_drive);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
 
         toggle.syncState();
-
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(navigationItemSelectedListener);
     }
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout_drive);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
@@ -101,5 +59,39 @@ public class DriveActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    public void startActivityFromDrawer(MenuItem menuItem) {
+        int id = menuItem.getItemId();
+
+        String logTag = "APP:NAVI_BAR";
+        String formatString = "nav item %s was chosen";
+
+        switch (id) {
+            case R.id.nav_drive:
+                Log.d(logTag, String.format(formatString, "DRIVE"));
+                DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout_drive);
+                drawer.closeDrawer(GravityCompat.START);
+                break;
+            case R.id.nav_refuel:
+                //TODO change/leave activity (content?) to refueling
+                Log.d(logTag, String.format(formatString, "REFUEL"));
+                startActivity(new Intent(this, RefuelActivity.class));
+                break;
+            case R.id.nav_passengers:
+                //TODO change/leave activity (content?) to passengers management
+                Log.d(logTag, String.format(formatString, "PASSENGERS"));
+                break;
+
+            case R.id.nav_share:
+                //TODO
+                Log.d(logTag, String.format(formatString, "SHARE"));
+                break;
+            case R.id.nav_send:
+                //TODO
+                Log.d(logTag, String.format(formatString, "SEND"));
+                break;
+            default:
+                break;
+        }
+    }
 
 }
