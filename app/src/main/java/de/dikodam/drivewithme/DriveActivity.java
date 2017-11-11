@@ -1,6 +1,8 @@
 package de.dikodam.drivewithme;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -10,6 +12,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.NumberPicker;
 
 public class DriveActivity extends AppCompatActivity {
 
@@ -24,6 +27,15 @@ public class DriveActivity extends AppCompatActivity {
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
 
+        NumberPicker numberPicker = (NumberPicker) findViewById(R.id.numberPicker);
+        numberPicker.setMinValue(0);
+        numberPicker.setMaxValue(Integer.MAX_VALUE);
+        numberPicker.setWrapSelectorWheel(false);
+
+        SharedPreferences sharedPrefs = getSharedPreferences(getString(R.string.preferences_key), Context.MODE_PRIVATE);
+        int saveMileage = sharedPrefs.getInt(getString(R.string.mileage_preference), 0);
+        numberPicker.setValue(saveMileage);
+
         toggle.syncState();
     }
 
@@ -35,6 +47,17 @@ public class DriveActivity extends AppCompatActivity {
         } else {
             super.onBackPressed();
         }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        SharedPreferences.Editor editor = getSharedPreferences(getString(R.string.preferences_key), Context.MODE_PRIVATE).edit();
+        NumberPicker numberPicker = (NumberPicker) findViewById(R.id.numberPicker);
+        int newMileagePreference = numberPicker.getValue();
+        editor.putInt(getString(R.string.mileage_preference), newMileagePreference);
+        editor.apply();
     }
 
     @Override

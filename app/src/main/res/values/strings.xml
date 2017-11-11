@@ -14,4 +14,8 @@
     <string name="share">Teilen</string>
     <string name="send">Senden</string>
     <string name="title_activity_refuel">RefuelActivity</string>
+    <string name="mileage">Kilometerstand</string>
+
+    <string name="preferences_key">de.dikodam.drivewithme.PREFERENCES_KEY</string>
+    <string name="mileage_preference">de.dikodam.drivewithme.MILEAGE_PREFERENCE</string>
 </resources>
