@@ -20,7 +20,7 @@ public class RefuelActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.refuel_toolbar);
         setSupportActionBar(toolbar);
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout_drive);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout_refuel);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
             this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
@@ -34,7 +34,7 @@ public class RefuelActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout_drive);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout_refuel);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
@@ -66,7 +66,7 @@ public class RefuelActivity extends AppCompatActivity {
 
     private boolean handleNavigationItemSelected(MenuItem menuItem) {
         int id = menuItem.getItemId();
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout_drive);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout_refuel);
 
         switch (id) {
             case R.id.nav_drive:

@@ -5,18 +5,15 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_drive"
-            android:icon="@drawable/ic_airport_shuttle_black"
-            android:onClick="handleNavigationItemSelected"
+            android:icon="@drawable/ic_car"
             android:title="@string/drive" />
         <item
             android:id="@+id/nav_refuel"
             android:icon="@drawable/ic_gas_station"
-            android:onClick="handleNavigationItemSelected"
             android:title="@string/refuel" />
         <item
             android:id="@+id/nav_passengers"
             android:icon="@drawable/ic_group"
-            android:onClick="handleNavigationItemSelected"
             android:title="@string/passengers" />
     </group>
 

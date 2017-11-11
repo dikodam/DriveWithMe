@@ -7,5 +7,5 @@
     android:layout_height="match_parent"
     android:layout_gravity="start"
     android:fitsSystemWindows="true"
-    app:headerLayout="@layout/nav_header_drive"
-    app:menu="@menu/activity_drive_drawer" />
+    app:headerLayout="@layout/nav_header"
+    app:menu="@menu/nav_menu" />
