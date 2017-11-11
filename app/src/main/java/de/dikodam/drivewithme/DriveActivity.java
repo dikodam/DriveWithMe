@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -35,6 +36,9 @@ public class DriveActivity extends AppCompatActivity {
         SharedPreferences sharedPrefs = getSharedPreferences(getString(R.string.preferences_key), Context.MODE_PRIVATE);
         int saveMileage = sharedPrefs.getInt(getString(R.string.mileage_preference), 0);
         numberPicker.setValue(saveMileage);
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this::handleNavigationItemSelected);
 
         toggle.syncState();
     }
@@ -82,39 +86,31 @@ public class DriveActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void startActivityFromDrawer(MenuItem menuItem) {
+    public boolean handleNavigationItemSelected(MenuItem menuItem) {
         int id = menuItem.getItemId();
-
-        String logTag = "APP:NAVI_BAR";
-        String formatString = "nav item %s was chosen";
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout_drive);
 
         switch (id) {
             case R.id.nav_drive:
-                Log.d(logTag, String.format(formatString, "DRIVE"));
-                DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout_drive);
                 drawer.closeDrawer(GravityCompat.START);
                 break;
             case R.id.nav_refuel:
-                //TODO change/leave activity (content?) to refueling
-                Log.d(logTag, String.format(formatString, "REFUEL"));
                 startActivity(new Intent(this, RefuelActivity.class));
                 break;
             case R.id.nav_passengers:
-                //TODO change/leave activity (content?) to passengers management
-                Log.d(logTag, String.format(formatString, "PASSENGERS"));
+                startActivity(new Intent(this, PassengersActivity.class));
                 break;
 
             case R.id.nav_share:
                 //TODO
-                Log.d(logTag, String.format(formatString, "SHARE"));
                 break;
             case R.id.nav_send:
                 //TODO
-                Log.d(logTag, String.format(formatString, "SEND"));
                 break;
             default:
                 break;
         }
+        return true;
     }
 
 }

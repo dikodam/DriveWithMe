@@ -11,7 +11,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".DriveActivity"
-            android:label="@string/app_name"
+            android:label="@string/title_activity_drive"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,7 +22,12 @@
         <activity
             android:name=".RefuelActivity"
             android:label="@string/title_activity_refuel"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".PassengersActivity"
+            android:label="@string/title_activity_passengers"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
     </application>
 
 </manifest>
